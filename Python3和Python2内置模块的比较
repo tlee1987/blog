@@ -63,8 +63,6 @@ ay', 'audioop', 'binascii', 'cPickle', 'cStringIO', 'cmath', 'datetime', 'errno'
 还有两个相关的概念，内建模块和lib库里面的标准库（自带电池）
 通常我是这么区分的：
 
- 
-
  - 内建模块：在Python3中是指`builtins`模块，在Python2中是指`__builtin__`模块 
  - 标准库：Python安装目录lib库里面的包和模块，这些模块都是用Python编写的
  - 内置模块 ：如上所述，包含了内建模块
