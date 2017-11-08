@@ -1,0 +1,28 @@
+﻿ESXI查询硬件信息：
+esxcli hardware cpu/memory/smartcard/pci list/get ->查询CPU,内存，智能卡，PCI设备
+df -h 查询硬盘信息
+
+BMC_v2.3.9查询硬件信息
+ipmcget -d diaginfo
+cd .\dump_info\dump_info\AppDump
+\AppDump\card_manage           ->功能卡类（包括PCIE,RAID,HDD,Riser,主板）
+\AppDump\CpuMem\cpu_info      ->CPU信息
+\AppDump\CpuMem\mem_info      ->内存信息
+\AppDump\cooling_app\fan_info.txt  ->风扇信息
+\AppDump\sensor_alarm          ->传感器信息
+
+linux查询硬件信息：
+CPU数量:  cat /proc/cpuinfo | grep 'processor'|sort|uniq|wc -l
+内存大小: dmidecode -t 17  
+            如果每根内存条大小相同
+            dmidecode -t 17 |grep -i size|grep -v 'No Module'|uniq|awk -F ': ' '{print $2}'|awk '{print $1}'  ->单根内存条大小
+            dmidecode -t 17 |grep -i size|grep -v 'No Module'|wc -l                                           ->内存条数量
+硬盘大小：fdisk -l
+网卡数量：lspci | grep -i net|wc -l
+
+windows查询硬件信息：
+cpu数量和网卡数量:systeminfo
+硬盘大小：wmic diskdrive get size/value
+内存大小：wmic memorychip get capacity/value
+
+Linux下查询所有物理网口：ifconfig -a|grep -v lo|cut -d ' ' -f1|sort|uniq|sed '/^$/d'
